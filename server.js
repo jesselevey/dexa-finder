@@ -35,7 +35,7 @@ app.post('/api/search-dexa-facilities', async (req, res) => {
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-5-20250929',
         max_tokens: 500,
         messages: [{
           role: 'user',
@@ -45,6 +45,8 @@ app.post('/api/search-dexa-facilities', async (req, res) => {
     });
 
     const geocodeData = await geocodeResponse.json();
+    console.log('Geocode response status:', geocodeResponse.status);
+    console.log('Geocode data:', JSON.stringify(geocodeData).slice(0, 500));
     let userCoords = null;
     
     if (geocodeData.content && geocodeData.content[0]) {
@@ -72,7 +74,7 @@ app.post('/api/search-dexa-facilities', async (req, res) => {
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-5-20250929',
         max_tokens: 4000,
         messages: [{
           role: 'user',
@@ -129,7 +131,7 @@ app.post('/api/search-dexa-facilities', async (req, res) => {
 
   } catch (error) {
     console.error('API Error:', error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message, stack: error.stack });
   }
 });
 
