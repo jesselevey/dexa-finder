@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3001;
 // Enable CORS for your frontend
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public')); // Serve the HTML file
+app.use(express.static(__dirname)); // Serve files from root directory
 
 // Main search endpoint using Anthropic API
 app.post('/api/search-dexa-facilities', async (req, res) => {
