@@ -135,7 +135,7 @@ app.post('/api/search-dexa-facilities', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Visit http://localhost:${PORT} to use the app`);
 });
